@@ -68,6 +68,7 @@ if __name__ == '__main__':
     all_u = np.empty_like(all_u0)
     for i, (u0, interior_mask) in enumerate(zip(all_u0, all_interior_mask)):
         u = jacobi(u0, interior_mask, MAX_ITER, ABS_TOL)
+        np.save(join("outputfolder",f"{building_ids[i]}_solution.npy"),u)
         all_u[i] = u
 
     # Print summary statistics in CSV format
