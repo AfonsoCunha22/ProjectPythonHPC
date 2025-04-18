@@ -11,7 +11,7 @@ def load_data(load_dir, bid):
     interior_mask = np.load(join(load_dir, f"{bid}_interior.npy"))
     return u, interior_mask
 
-
+@profile
 def jacobi(u, interior_mask, max_iter, atol=1e-6):
     u = np.copy(u)
 
@@ -68,6 +68,7 @@ if __name__ == '__main__':
     all_u = np.empty_like(all_u0)
     for i, (u0, interior_mask) in enumerate(zip(all_u0, all_interior_mask)):
         u = jacobi(u0, interior_mask, MAX_ITER, ABS_TOL)
+        np.save(join("outputfolder",f"{building_ids[i]}_solution.npy"),u)
         all_u[i] = u
 
     # Print summary statistics in CSV format

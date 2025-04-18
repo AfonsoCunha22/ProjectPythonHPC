@@ -1,0 +1,61 @@
+Running kernprof on the jacobi function...
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24734979: <profiling_job> in cluster <dcc> Done
+
+Job <profiling_job> was submitted from host <n-62-30-8> by user <s233177> in cluster <dcc> at Fri Apr 18 16:49:53 2025
+Job was executed on host(s) <n-62-28-34>, in queue <hpc>, as user <s233177> in cluster <dcc> at Fri Apr 18 16:49:53 2025
+</zhome/ca/7/203238> was used as the home directory.
+</zhome/ca/7/203238/PyHPC/Project> was used as the working directory.
+Started at Fri Apr 18 16:49:53 2025
+Terminated at Fri Apr 18 16:49:59 2025
+Results reported at Fri Apr 18 16:49:59 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+
+#BSUB -q hpc
+#BSUB -J profiling_job
+#BSUB -n 1
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=1024MB]"
+#BSUB -M 1GB
+#BSUB -W 10
+#BSUB -R "select[model == XeonE5_2660v3]"
+#BSUB -o profiling_output.log
+#BSUB -e profiling_error.log
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613
+
+echo "Running kernprof on the jacobi function..."
+kernprof -l -v Task4_Profiling.py > kernprof_output.txt
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   2.99 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   6 sec.
+    Turnaround time :                            6 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <profiling_error.log> for stderr output of this job.
+
